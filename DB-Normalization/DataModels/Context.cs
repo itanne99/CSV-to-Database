@@ -18,5 +18,18 @@ public class Context: DbContext
     {
         modelBuilder.Entity<Genres>()
             .HasAlternateKey(c => c.Genre_Name);
+        modelBuilder.HasSequence<int>("Album_ID", schema: "Albums")
+            .StartsAt(1)
+            .IncrementsBy(1);
+        modelBuilder.HasSequence<int>("Artist_ID", schema: "Artists")
+            .StartsAt(1)
+            .IncrementsBy(1);
+        modelBuilder.HasSequence<int>("Genre_ID", schema: "Genres")
+            .StartsAt(1)
+            .IncrementsBy(1);
+        modelBuilder.HasSequence<int>("ID", schema: "Songs")
+            .StartsAt(1)
+            .IncrementsBy(1);
+
     }
 }
