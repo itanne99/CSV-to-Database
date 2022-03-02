@@ -11,7 +11,7 @@ public class Context: DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        optionsBuilder.UseSqlite("Filename=D:/College/Fourth Year - Semester Two/IS421/DB-Normalization/DB-Normalization/DB-Normalization/Classes.sqlite");
+        optionsBuilder.UseNpgsql("Host=localhost;Database=music;Username=idoTanne;Password=password1234");;
     }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)

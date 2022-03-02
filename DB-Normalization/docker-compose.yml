@@ -1,0 +1,11 @@
+﻿version: '3.3'
+services:
+  postgres:
+    container_name: 'asp-postgres'
+    environment:
+      - POSTGRES_USER=idoTanne
+      - POSTGRES_PASSWORD=password1234
+      - POSTGRES_DB=music
+    ports:
+      - "5432:5432"
+    image: postgres
