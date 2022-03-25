@@ -11,61 +11,61 @@ using var myContext = new Context();
 foreach (var record in records)
 {
     
-    if (!myContext.Songs.Any(s => s.Song_Name == record.Name))//Checks if song name in db
+    if (!myContext.Songs.Any(s => s.Name == record.Name))//Checks if song name in db
     {
         Console.WriteLine($"Song Name: Adding {record.Name} to db");
         //Check if Album is in db
-        var album = new Albums();
-        if (!myContext.Albums.Any(a => a.Album_Name == record.Album))
+        var album = new Album();
+        if (!myContext.Albums.Any(a => a.Name == record.Album))
         {
             Console.WriteLine($"Album Name: Adding {record.Album} to db");
-            album = new Albums()
+            album = new Album()
             {
-                Album_Name = record.Album,
-                Release_Year = record.Year
+                Name = record.Album,
+                Year = record.Year
             };
         }
         else
         {
-            album = myContext.Albums.First(a => a.Album_Name == record.Album);
+            album = myContext.Albums.First(a => a.Name == record.Album);
         }
         
         //Check if Artist is in db
-        var artist = new Artists();
-        if (!myContext.Artists.Any(a => a.Artist_Name == record.Artist))
+        var artist = new Artist();
+        if (!myContext.Artists.Any(a => a.Name == record.Artist))
         {
             Console.WriteLine($"Artist Name: Adding {record.Artist} to db");
-            artist = new Artists()
+            artist = new Artist()
             {
-                Artist_Name = record.Artist
+                Name = record.Artist
             };
         }
         else
         {
-            artist = myContext.Artists.First(a => a.Artist_Name == record.Artist);
+            artist = myContext.Artists.First(a => a.Name == record.Artist);
         }
         
         //Check if Genre is in db
-        var genre = new Genres();
-        if (!myContext.Genres.Any(g => g.Genre_Name == record.Genre))
+        var genre = new Genre();
+        if (!myContext.Genres.Any(g => g.Name == record.Genre))
         {
             Console.WriteLine($"Genre Name: Adding {record.Genre} to db");
-            genre = new Genres()
+            genre = new Genre()
             {
-                Genre_Name = record.Genre
+                Name = record.Genre
             };
         }
         else
         {
-            genre = myContext.Genres.First(g => g.Genre_Name == record.Genre);
+            genre = myContext.Genres.First(g => g.Name == record.Genre);
         }
         
-        var song = new Songs()
+        var song = new Song()
         {
-            Album_of_Song = album,
-            Song_Artist = artist,
-            Song_Genre = genre,
-            Song_Name = record.Name
+            Album = album,
+            Artist = artist,
+            Genre = genre,
+            Name = record.Name
         };
         
         myContext.Add(song);
