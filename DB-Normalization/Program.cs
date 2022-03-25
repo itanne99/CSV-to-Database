@@ -15,21 +15,6 @@ foreach (var record in records)
     {
         Console.WriteLine($"Song Name: Adding {record.Name} to db");
         //Check if Album is in db
-        var album = new Album();
-        if (!myContext.Albums.Any(a => a.Name == record.Album))
-        {
-            Console.WriteLine($"Album Name: Adding {record.Album} to db");
-            album = new Album()
-            {
-                Name = record.Album,
-                Year = record.Year
-            };
-        }
-        else
-        {
-            album = myContext.Albums.First(a => a.Name == record.Album);
-        }
-        
         //Check if Artist is in db
         var artist = new Artist();
         if (!myContext.Artists.Any(a => a.Name == record.Artist))
@@ -44,6 +29,24 @@ foreach (var record in records)
         {
             artist = myContext.Artists.First(a => a.Name == record.Artist);
         }
+        
+        var album = new Album();
+        if (!myContext.Albums.Any(a => a.Name == record.Album))
+        {
+            Console.WriteLine($"Album Name: Adding {record.Album} to db");
+            album = new Album()
+            {
+                Name = record.Album,
+                Year = record.Year,
+                Artist = artist
+            };
+        }
+        else
+        {
+            album = myContext.Albums.First(a => a.Name == record.Album);
+        }
+        
+        
         
         //Check if Genre is in db
         var genre = new Genre();
